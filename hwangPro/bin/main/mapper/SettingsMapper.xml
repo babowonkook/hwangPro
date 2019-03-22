@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.won.repository.SettingsMapper">
+
+    <select id="selectSettingsByUniacid" resultType="hashMap">
+		SELECT id,
+			uniacid,
+			name,
+			type,
+			bg_color,
+			fg_color,
+			share_title,
+			area_limit,
+			tencent_map_apikey,
+			single_storeid,
+			store_blogo,
+			copyright,
+			wxapp_scan,
+			wxapp_scan_name,
+			wxapp_scan_color,
+			wxapp_scan_intro,
+			wxapp_scan_logo,
+			wxapp_takeout,
+			wxapp_takeout_name,
+			wxapp_takeout_color,
+			wxapp_takeout_intro,
+			wxapp_takeout_logo,
+			wxapp_getself,
+			wxapp_getself_name,
+			wxapp_getself_color,
+			wxapp_getself_intro,
+			wxapp_getself_logo,
+			deliver_dada_status,
+			bell_settings
+		FROM ims_deamx_food_settings
+		WHERE uniacid = #{uniacid}
+    </select>
+
+
+</mapper>

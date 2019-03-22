@@ -1,0 +1,4 @@
+# 用于切换配置文件，dev=开发环境；test=测试环境；prod=线上环境
+spring:
+  profiles:
+    active: dev

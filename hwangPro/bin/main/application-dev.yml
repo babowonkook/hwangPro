@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: api
+  datasource:
+    url: jdbc:mysql://localhost:3306/deamx?useUnicode=true&characterEncoding=UTF-8&connectTimeout=60000&socketTimeout=60000&autoReconnect=true&autoReconnectForPools=true&failOverReadOnly=false&serverTimezone=UTC&tinyInt1isBit=false
+    username: root
+    password: root
+    continueOnError: true
+    driverClassName: com.mysql.cj.jdbc.Driver
+    sqlScriptEncoding: utf-8
+  http: 
+    encoding: 
+     charset: UTF-8
+     enabled: true
+     force: true
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# mybatis 매핑 type을 짧게 쓰기 위한 설정
+mybatis:
+  type-aliases-package: com.won.model
+  mapper-locations: classpath:mapper/**/*.xml
+
+server:
+  port: 8080
+  context-path: /learn
+
+logging:
+  file: /log/learn/dev
+  level:
+    org.springframework: INFO
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+    io.swagger: ERROR
+    springfox.documentation: ERROR
+    com.won: DEBUG
+    com.won.dao.mapper: TRACE
+
+login:
+  learn:
+    basicAuthName: basicis5i
+    basicAuthPass: lEUGd4LtF
+    
+filepath:
+  download: /home/webmaster/FILE
+  upload: /home/webmaster/FILE
+  uploadUrl: file:/home/webmaster/FILE/
+  separator: /
+  rootpath: 192.168.5.217:8080

@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: api
+  datasource:
+    url: jdbc:mysql://www.5iwyx.xyz:3306/db_learn?useUnicode=true&characterEncoding=UTF-8&connectTimeout=60000&socketTimeout=60000&autoReconnect=true&autoReconnectForPools=true&failOverReadOnly=false
+    username: root
+    password:
+    continueOnError: true
+    driverClassName: com.mysql.cj.jdbc.Driver
+    sqlScriptEncoding: utf-8
+  http:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  port: 8081
+  context-path: /learn
+
+logging:
+  file: /log/learn/dev
+  level:
+    org.springframework.security: INFO
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+    io.swagger: ERROR
+    springfox.documentation: ERROR
+    com.learn.api: DEBUG
+
+login:
+  learn:
+    basicAuthName: basicis5i
+    basicAuthPass: lEUGd4LtF

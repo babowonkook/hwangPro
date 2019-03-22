@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.won.repository.GoodsSpecMapper">
+
+    <select id="selectGoodsSpecById" resultType="hashMap">
+		SELECT *
+		FROM ims_deamx_food_goods_spec
+		WHERE uniacid = #{uniacId}
+		AND goodsid = #{goodsId}
+		ORDER BY displayorder ASC
+    </select>
+
+    <select id="selectGoodsSpecItemsById" resultType="hashMap">
+		SELECT *
+		FROM ims_deamx_food_goods_spec_item a
+		WHERE specid = #{specId}
+		AND a.show = 1
+		ORDER BY displayorder ASC
+    </select>
+
+    <select id="selectGoodsOptionsById" resultType="hashMap">
+		SELECT *
+		FROM ims_deamx_food_goods_option
+		WHERE uniacid = #{uniacId}
+		AND goodsid = #{goodsId}
+		ORDER BY displayorder ASC
+    </select>
+
+</mapper>        

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="com.won.repository.GoodsMapper">
+
+    <select id="selectGoodsById" resultType="hashMap">
+		SELECT *
+		FROM ims_deamx_food_goods
+		WHERE uniacid = #{uniacId}
+		AND store_id = #{storeId}
+		<if test="classId!=null and !classId.equals('')">
+		AND class_id = #{classId}
+		</if>
+		<if test="goodsId!=null and !goodsId.equals('')">
+		AND id = #{goodsId}
+		</if>
+    </select>
+
+
+</mapper>        
