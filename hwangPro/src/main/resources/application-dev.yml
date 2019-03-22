@@ -42,8 +42,8 @@ login:
     basicAuthPass: lEUGd4LtF
     
 filepath:
-  download: /home/webmaster/FILE
-  upload: /home/webmaster/FILE
-  uploadUrl: file:/home/webmaster/FILE/
+  download: /Users/wonkook/Desktop/FILE
+  upload: /Users/wonkook/Desktop/FILE
+  uploadUrl: file:/Users/wonkook/Desktop/FILE/
   separator: /
-  rootpath: 192.168.5.217:8080
+  rootpath: http://192.168.219.104

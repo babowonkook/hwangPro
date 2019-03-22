@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,8 +39,11 @@ public class StoreService {
     @Autowired
     GoodsSpecMapper goodsSpecMapper;
 
-	@Autowired
-	FilePathProperties filePathProperties;
+	@Value("${server.port}")
+	private String port;
+	
+	@Value("${filepath.rootpath}")
+	private String rootPath;
 	
     public Map<String, Object> getStoreById(String uniacId, String storeId, String deskId) {
     	Map<String, Object> storeInfo = storeMapper.selectStoreById(uniacId, storeId);
@@ -53,7 +57,7 @@ public class StoreService {
     		List<Map<String, Object>> goodsByClass = goodsMapper.selectGoodsById(uniacId, storeId, classMap.get("id").toString(),null);
     		for(Map<String, Object> good : goodsByClass) {
     			if(good.get("img") != null && StringUtils.isNotEmpty(good.get("img").toString())) {
-    				String img = "http://" + filePathProperties.getRootpath() + "/static" + good.get("img").toString();
+    				String img = rootPath + ":" + port + "/static" + good.get("img").toString();
     				good.put("img", img);
     			}
     		}

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -29,6 +30,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Autowired
 	FilePathProperties filePathProperties;
 	
+	@Value("${server.port}")
+	private String port;
+	
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LogInterceptor())
@@ -40,6 +44,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
     	log.debug("#########################{}",filePathProperties.getUploadUrl());
+    	log.debug("#########################{}",port);
     	registry.addResourceHandler("/static/**").addResourceLocations(filePathProperties.getUploadUrl());//file:/home/webmaster/FILE/
     	registry.addResourceHandler("/img/**").addResourceLocations("classpath:/static/img/");
     	WebMvcConfigurer.super.addResourceHandlers(registry);

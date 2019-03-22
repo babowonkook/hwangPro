@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,16 +23,22 @@ import lombok.extern.slf4j.Slf4j;
 public class AdvService {
     @Autowired
     AdvMapper advMapper;
-    
-	@Autowired
-	FilePathProperties filePathProperties;
+	
+	@Value("${server.port}")
+	private String port;
+	
+	@Value("${filepath.upload}")
+	private String upload;
+	
+	@Value("${filepath.rootpath}")
+	private String rootPath;
 
     public Map<String, Object> getAdvsById(String uniacid) {
     	List<Map<String, Object>> reulsts = advMapper.selectAdvsByUniacid(uniacid);
     	int advHeight = 0;
     	int advWidth = 0;
     	if(reulsts.get(0) != null) {
-    		String adv_img = filePathProperties.getUpload() + reulsts.get(0).get("adv_img").toString();
+    		String adv_img = upload + reulsts.get(0).get("adv_img").toString();
     		log.debug("adv_img: {}", adv_img);
     		Image img = new ImageIcon(adv_img).getImage();
     		
@@ -41,7 +48,7 @@ public class AdvService {
     		log.debug("img Width: {}", advWidth);
     	}
 		for(Map<String, Object> adv : reulsts) {
-			String advImgUrl = "http://" + filePathProperties.getRootpath() + "/static" + adv.get("adv_img").toString();
+			String advImgUrl = rootPath + ":" + port + "/static" + adv.get("adv_img").toString();
 			adv.put("adv_img", advImgUrl);
 		}
 		
